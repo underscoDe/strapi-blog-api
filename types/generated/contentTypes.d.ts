@@ -698,7 +698,6 @@ export interface ApiArticleArticle extends Schema.CollectionType {
     status: Attribute.Enumeration<['draft', 'published', 'archived']> &
       Attribute.Required &
       Attribute.DefaultTo<'draft'>;
-    author: Attribute.String & Attribute.Required & Attribute.Unique;
     tags: Attribute.Relation<
       'api::article.article',
       'oneToMany',
@@ -708,6 +707,11 @@ export interface ApiArticleArticle extends Schema.CollectionType {
       'api::article.article',
       'manyToMany',
       'api::category.category'
+    >;
+    authors: Attribute.Relation<
+      'api::article.article',
+      'manyToMany',
+      'api::author.author'
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
@@ -720,6 +724,42 @@ export interface ApiArticleArticle extends Schema.CollectionType {
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::article.article',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiAuthorAuthor extends Schema.CollectionType {
+  collectionName: 'authors';
+  info: {
+    singularName: 'author';
+    pluralName: 'authors';
+    displayName: 'author';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    name: Attribute.String & Attribute.Required & Attribute.Unique;
+    articles: Attribute.Relation<
+      'api::author.author',
+      'manyToMany',
+      'api::article.article'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::author.author',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::author.author',
       'oneToOne',
       'admin::user'
     > &
@@ -813,6 +853,7 @@ declare module '@strapi/types' {
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
       'plugin::i18n.locale': PluginI18NLocale;
       'api::article.article': ApiArticleArticle;
+      'api::author.author': ApiAuthorAuthor;
       'api::category.category': ApiCategoryCategory;
       'api::tag.tag': ApiTagTag;
     }
