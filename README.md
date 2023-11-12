@@ -68,9 +68,9 @@ Follow the Strapi documentation for deploying your application to production:
 Contributing
 ------------
 
-If you'd like to contribute to this project, please follow the guidelines in [CONTRIBUTING.md](https://chat.openai.com/c/CONTRIBUTING.md).
+If you'd like to contribute to this project, please follow the guidelines in [CONTRIBUTING.md].
 
 License
 -------
 
-This project is licensed under the [MIT License](https://chat.openai.com/c/LICENSE).
+This project is licensed under the [MIT License].
