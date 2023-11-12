@@ -690,7 +690,6 @@ export interface ApiArticleArticle extends Schema.CollectionType {
   };
   attributes: {
     title: Attribute.String & Attribute.Required & Attribute.Unique;
-    content: Attribute.Blocks & Attribute.Required;
     slug: Attribute.String & Attribute.Required & Attribute.Unique;
     excerpt: Attribute.Text & Attribute.Required;
     header_image: Attribute.Media & Attribute.Required;
@@ -713,6 +712,7 @@ export interface ApiArticleArticle extends Schema.CollectionType {
       'manyToMany',
       'api::author.author'
     >;
+    content: Attribute.RichText & Attribute.Required;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

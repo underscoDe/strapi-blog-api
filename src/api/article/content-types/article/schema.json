@@ -17,10 +17,6 @@
       "unique": true,
       "required": true
     },
-    "content": {
-      "type": "blocks",
-      "required": true
-    },
     "slug": {
       "type": "string",
       "required": true,
@@ -72,6 +68,10 @@
       "relation": "manyToMany",
       "target": "api::author.author",
       "inversedBy": "articles"
+    },
+    "content": {
+      "type": "richtext",
+      "required": true
     }
   }
 }
